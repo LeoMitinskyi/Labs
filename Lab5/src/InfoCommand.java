@@ -2,7 +2,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 public class InfoCommand implements Command {
-    public LinkedList<Ticket> c;
+    private LinkedList<Ticket> c;
 
     public InfoCommand(LinkedList<Ticket> c) {
         this.c = c;
@@ -12,8 +12,9 @@ public class InfoCommand implements Command {
         System.out.println("Количество элементов: " + c.size());
         if (c.size() != 0 ) System.out.println("Время создания: " + c.getFirst().getDateOfCreation());
     }
-    public void getCollection() {
-        System.out.println(c);
-    }
 
+    @Override
+    public String toString() {
+        return "info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов)";
+    }
 }

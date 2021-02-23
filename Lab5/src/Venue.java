@@ -13,29 +13,32 @@ public class Venue {
         do {
             System.out.println("Введите название аудитории: ");
             name = scanner.nextLine();
-        } while(name == null);
+        } while(name.equals(""));
 
         do {
             System.out.println("Введите вместимость аудитории: (введите 0, если она не важна)");
             if (scanner.hasNextInt()) {
                 capacity = scanner.nextInt();
+                System.out.println(capacity);
                 if (capacity == 0) {
                     capacity = null;
                 }
-            } else System.out.println("Введите корректное значение");
+            } else {
+                System.out.println("Введите корректное значение");
+            }
+            scanner.nextLine();
         } while (capacity == -1);
-
+        String s;
         do {
-            String s;
-            System.out.println("Введите тип билета: (оставьте поле пустым, если хотите)");
-            System.out.println("Список возможным типов: VIP, USUAL, BUDGETARY, CHEAP");
+            System.out.println("Введите тип аудитории: (оставьте поле пустым, если хотите)");
+            System.out.println("Список возможным типов:   BAR, LOFT, THEATRE, MALL, STADIUM");
             s = scanner.nextLine();
-            if (s != null) {
+            if (!s.equals("")) {
                 try {
                     type = VenueType.valueOf(s.toUpperCase());
                 } catch (IllegalArgumentException e) {System.out.println("Введите корректное название типа");}
-            } else break;
-        } while (type == null);
+            }
+        } while (type == null && !s.equals(""));
     }
 
     public String getVenueName() {

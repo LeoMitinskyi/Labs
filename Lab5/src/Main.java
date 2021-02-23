@@ -12,7 +12,7 @@ public class Main {
         CommandDecoder commandDecoder = new CommandDecoder();
         //commandDecoder.getCollection().add(new Ticket());
         do {
-            System.out.println("Введите команду: (help - узнать список команд)");
+            System.out.println("Введите команду: (help - узнать список команд, exit - выход из программы (без сохранения))");
             command = scanner.nextLine();
             try {
                 commandDecoder.decode(command);
@@ -22,7 +22,7 @@ public class Main {
                 com.execute();
             } catch(Exception e) {System.out.println("Такой команды не существует!"+e.toString());};*/
 
-        } while(! command.equals(""));
+        } while(! command.equals("exit"));
 
     }
 }

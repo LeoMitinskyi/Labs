@@ -13,6 +13,18 @@ public class Ticket {
     private Venue venue; //Поле может быть null
 
     public Ticket() {
+        updateElement();
+    }
+
+    public String getDateOfCreation() {
+        return creationDate.toString();
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void updateElement() {
         String s = "";
         id = (int) creationDate.getTime();
         Scanner scanner = new Scanner(System.in);
@@ -20,7 +32,7 @@ public class Ticket {
             System.out.println("Введите название билета: ");
             s = scanner.nextLine();
             name = s;
-        } while(s == null);
+        } while(s.equals(""));
 
         do {
             System.out.println("Введите координаты: (в формате x y)");
@@ -31,35 +43,39 @@ public class Ticket {
                     d[1] = scanner.nextDouble();
                     if (d[0] > -48 && d[1] > -48) {
                         coordinates = new Coordinates(d[0], d[1]);
-                    } else System.out.println("Введите корректные значения x и y (они должны быть больше -48)");
+                    } else {
+                        System.out.println("Введите корректные значения x и y (они должны быть больше -48)");
+                    }
                 }
-            } else System.out.println("Введите корректные значения x и y (они должны быть больше -48)");
+            } else {
+                System.out.println("Введите корректные значения x и y (они должны быть больше -48)");
+            }
+            scanner.nextLine();
         } while(coordinates == null);
 
         do {
             System.out.println("Введите стоимость билета: (она должна быть больше 0)");
             if (scanner.hasNextDouble()) {
                 price = scanner.nextDouble();
-            } else System.out.println("Введите кокектную стоимость");
-        } while (price == 0);
+            } else {
+                System.out.println("Введите корректную стоимость");
+            }
+            scanner.nextLine();
+        } while (price <= 0);
 
         do {
             System.out.println("Введите тип билета: (оставьте поле пустым, если хотите)");
             System.out.println("Список возможным типов: VIP, USUAL, BUDGETARY, CHEAP");
             s = scanner.nextLine();
-            if (s != null) {
+            if (!s.equals("")) {
                 try {
                     type = TicketType.valueOf(s.toUpperCase());
                 } catch (IllegalArgumentException e) {System.out.println("Введите корректное название типа");}
-            } else break;
-        } while (type == null);
+            }
+        } while (type == null && !s.equals(""));
 
         System.out.println("Куда билет? (если не хотите вводить, оставьте поле пустым, для продолжения напишите любой символ)");
-        if (scanner.nextLine() != "") venue = new Venue();
-    }
-
-    public String getDateOfCreation() {
-        return creationDate.toString();
+        if (!scanner.nextLine().equals("")) venue = new Venue();
     }
 
     @Override
