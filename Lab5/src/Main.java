@@ -10,9 +10,9 @@ public class Main {
         String command;
         Scanner scanner = new Scanner(System.in);
         CommandDecoder commandDecoder = new CommandDecoder();
-
-        commandDecoder.getCollection().add(new Ticket());
+        //commandDecoder.getCollection().add(new Ticket());
         do {
+            System.out.println("Введите команду: (help - узнать список команд)");
             command = scanner.nextLine();
             try {
                 commandDecoder.decode(command);

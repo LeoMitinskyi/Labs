@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class Ticket {
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -6,5 +8,10 @@ public class Ticket {
     private Double price; //Поле не может быть null, Значение поля должно быть больше 0
     private TicketType type; //Поле может быть null
     private Venue venue; //Поле может быть null
+    private Date date = new Date();
+
+    public String getDateOfCreation() {
+        return date.toString();
+    }
 }
 

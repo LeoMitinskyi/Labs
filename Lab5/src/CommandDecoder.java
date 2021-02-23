@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class CommandDecoder {
 
     private HashMap<String, Command> commands = new HashMap<>();
-    private Collection<Ticket> c = new LinkedList<>();
+    private LinkedList<Ticket> c = new LinkedList<>();
     private Command cd;
 
     {
@@ -14,12 +14,12 @@ public class CommandDecoder {
 
     public void decode(String com) {
 
-            cd = commands.get(com);
+            cd = commands.get(com.toLowerCase());
             cd.execute();
 
     }
 
-    public void changeCollection(Collection<Ticket> c) {
+    public void changeCollection(LinkedList<Ticket> c) {
         this.c = c;
     }
     public Collection<Ticket> getCollection() {
