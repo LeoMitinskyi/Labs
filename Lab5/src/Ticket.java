@@ -12,6 +12,8 @@ public class Ticket {
     private TicketType type; //Поле может быть null
     private Venue venue; //Поле может быть null
 
+    private boolean itsMarked = false;
+
     public Ticket() {
         updateElement();
     }
@@ -23,6 +25,10 @@ public class Ticket {
     public Double getPrice() {
         return price;
     }
+
+    public int getId() {return id;}
+
+    public void mark() {itsMarked = !itsMarked;}
 
     public void updateElement() {
         String s = "";

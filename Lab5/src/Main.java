@@ -16,7 +16,8 @@ public class Main {
             command = scanner.nextLine();
             try {
                 commandDecoder.decode(command);
-            } catch(NullPointerException e) {System.out.println("Такой команды не существует!");}
+            } catch(NullPointerException | IllegalArgumentException  e) {System.out.println("Такой команды не существует или аргумент имеет неправильный тип");}
+            catch(IdNotFoundException e) {System.out.println("Билета с таким id не было найдено");};
             /*try {
                 Command com = (Command) Class.forName(command+"Command").newInstance();
                 com.execute();
