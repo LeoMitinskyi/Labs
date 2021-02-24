@@ -1,7 +1,22 @@
-public class RemoveByIdCommand implements Command{
+import java.util.LinkedList;
+
+public class RemoveByIdCommand implements CommandWithAdditionalArgument{
+
+    private LinkedList<Ticket> c;
+    private int ID;
+
+    public RemoveByIdCommand(LinkedList<Ticket> c) {
+        this.c = c;
+    }
+
     @Override
     public void execute() {
+        if (!c.removeIf(i -> i.getId() == ID)) throw new IdNotFoundException();
+    }
 
+    @Override
+    public void addArgument(String obj) {
+        ID = Integer.parseInt(obj);
     }
 
     @Override

@@ -10,9 +10,11 @@ public class ShowCommand implements Command{
 
     @Override
     public void execute() {
-        for (Ticket i: c) {
-            System.out.println(i);
-        }
+        if (c.size() != 0) {
+            for (Ticket i : c) {
+                System.out.println(i);
+            }
+        } else System.out.println("Нечего показывать");
     }
 
     @Override

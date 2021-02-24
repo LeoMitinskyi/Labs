@@ -15,8 +15,9 @@ public class Main {
             System.out.println("Введите команду: (help - узнать список команд, exit - выход из программы (без сохранения))");
             command = scanner.nextLine();
             try {
-                commandDecoder.decode(command);
-            } catch(NullPointerException | IllegalArgumentException  e) {System.out.println("Такой команды не существует или аргумент имеет неправильный тип");}
+               commandDecoder.decode(command);
+            } catch(NullPointerException | IllegalArgumentException  e) {System.out.println("Такой команды не существует");}
+            catch (IllegalCountOfArgumentsException e) {System.out.println("Неправльное количество аргументов");}
             catch(IdNotFoundException e) {System.out.println("Билета с таким id не было найдено");};
             /*try {
                 Command com = (Command) Class.forName(command+"Command").newInstance();

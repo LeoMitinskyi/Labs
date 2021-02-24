@@ -1,7 +1,8 @@
 import java.util.LinkedList;
 
-public class UpdateCommand implements Command{
+public class UpdateCommand implements CommandWithAdditionalArgument{
     private LinkedList<Ticket> c;
+    private int ID;
 
     public UpdateCommand(LinkedList<Ticket> c) {
         this.c = c;
@@ -9,7 +10,18 @@ public class UpdateCommand implements Command{
 
     @Override
     public void execute() {
+        int k = 0;
+        for (Ticket i : c) {
+            if (i.getId() == ID) {
+                i.updateElement();
+            } else k++;
+        }
+        if (k == c.size()) throw new IdNotFoundException();
+    }
 
+    @Override
+    public void addArgument(String obj) {
+        ID = Integer.parseInt(obj);
     }
 
     @Override

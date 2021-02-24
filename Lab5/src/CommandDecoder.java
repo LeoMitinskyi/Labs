@@ -10,42 +10,34 @@ public class CommandDecoder {
         commands.put("info", new InfoCommand(c));
         commands.put("show", new ShowCommand(c));
         commands.put("add", new AddCommand(c));
-        commands.put("update <id>", new UpdateCommand(c));
+        commands.put("update", new UpdateCommand(c));
+        commands.put("remove_by_id", new RemoveByIdCommand(c));
 
     }
 
     public void decode(String com) {
+
             String[] s;
             s = com.split(" ");
-            for (String i:s) System.out.println(i);
-            if (s.length == 1) {
-                cd = commands.get(s[0].toLowerCase());
-            } else if (s.length == 2) {
-                try{
-                if (s[0].toLowerCase().equals("update") || s[0].toLowerCase().equals("remove_by_id")) {
-                    cd = commands.get((s[0] + " <id>").toLowerCase());
-                    int i = Integer.parseInt(s[1]);
-                    for (Ticket ticket:c) {
-                        if (ticket.getId() == i) {
-                            ticket.mark();
-                        } else throw new IdNotFoundException();
-                    }
-                }
-                if (s[0].toLowerCase().equals("filter_greater_than_price")) {
-                    cd = commands.get((s[0] + " <price>").toLowerCase());
-                    double i = Double.parseDouble(s[1]);
-                    for (Ticket ticket:c) {
-                        if (ticket.getPrice() > i) {
-                            ticket.mark();
-                        }
-                    }
-                }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Аргумент имеет неправльный тип (для id - int, для price - double)");
-                    }
-                }
-            else if (s.length > 2) System.out.println("Неправильное значение аргументов или неверно введённая команда");
-            cd.execute();
+            //System.out.println(s.toString());
+
+            cd = commands.get(s[0].toLowerCase());
+
+            if (s.length == 1 && Arrays.asList(cd.getClass().getInterfaces()).contains(Command.class)) cd.execute();
+            else if (s.length == 1) throw new IllegalCountOfArgumentsException();
+
+            try {
+                if (s.length == 2 && Arrays.asList(cd.getClass().getInterfaces()).contains(CommandWithAdditionalArgument.class)) {
+                    ((CommandWithAdditionalArgument) cd).addArgument(s[1]);
+                    cd.execute();
+                } else if (s.length > 2) throw new IllegalCountOfArgumentsException();
+
+            } catch (NumberFormatException e) {
+                System.out.println("Аргумент имеет неправльный тип (для id - int, для price - double)");
+            }
+
+
+
 
     }
 
