@@ -49,7 +49,7 @@ public class CommandDecoder {
     public void changeCollection(LinkedList<Ticket> c) {
         this.c = c;
     }
-    public Collection<Ticket> getCollection() {
+    public LinkedList<Ticket> getCollection() {
         return c;
     }
 

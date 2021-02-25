@@ -4,6 +4,8 @@ import java.util.UUID;
 
 public class Ticket {
 
+    private static int generalId = 10000;
+
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -13,7 +15,19 @@ public class Ticket {
     private Venue venue; //Поле может быть null
 
     public Ticket() {
+        id = generalId++;
         updateElement();
+    }
+
+    public Ticket(String name, Coordinates coordinates, Double price, TicketType type, String venueName, Integer venueCapacity, VenueType venueType) {
+        id = generalId++;
+        this.name = name;
+        this.coordinates = coordinates;
+        this.price = price;
+        this.type = type;
+        if (venueName != null) {
+            venue = new Venue(venueName, venueCapacity, venueType);
+        }
     }
 
     public String getDateOfCreation() {
@@ -29,7 +43,7 @@ public class Ticket {
 
     public void updateElement() {
         String s = "";
-        id = (int) (creationDate.getTime() + 724600000);
+        //id = (int) (creationDate.getTime() + 724600000);
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Введите название билета: ");
@@ -43,7 +57,7 @@ public class Ticket {
             try {
                 if (j.length > 2 || j.length == 0) System.out.println("Введите корректное число аргументов");
                 else if (Double.parseDouble(j[0]) > -48 && Double.parseDouble(j[1]) > -48) coordinates = new Coordinates(Double.parseDouble(j[0]), Double.parseDouble(j[1]));
-                else System.out.println("\"Введите корректные значения x и y (они должны быть больше -48)");
+                else System.out.println("Введите корректные значения x и y (они должны быть больше -48)");
             } catch (NumberFormatException e) {System.out.println("Введите корректные значения x и y (они должны быть больше -48)");}
 
         } while(coordinates == null);
@@ -77,7 +91,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Id: " + id + " " + name + " в " + venue.getVenueName() + ", стоимость билета - " + price;
+        return "Id: " + id + " " + name + ", стоимость билета - " + price + type;
     }
 }
 

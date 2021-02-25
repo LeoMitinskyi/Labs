@@ -10,7 +10,15 @@ public class Main {
         String command;
         Scanner scanner = new Scanner(System.in);
         CommandDecoder commandDecoder = new CommandDecoder();
-        //commandDecoder.getCollection().add(new Ticket());
+        System.out.println("Введите полный путь к файлу, из которого нужно считать коллекцию (оставьте пустым, если хотите оставить файл по умолчанию)");
+        command = scanner.nextLine();
+        FileReader fileReader = new FileReader(commandDecoder.getCollection());
+        try {
+            fileReader.read(command);
+        } catch (NumberFormatException | IncorrectInputDataException e) {
+            System.out.println("Файл содержит некрректно введённые данные (убедитесь в и их правильности)" + e);
+        }
+
         do {
             System.out.println("Введите команду: (help - узнать список команд, exit - выход из программы (без сохранения))");
             command = scanner.nextLine();
