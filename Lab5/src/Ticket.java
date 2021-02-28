@@ -15,12 +15,12 @@ public class Ticket {
     private Venue venue; //Поле может быть null
 
     public Ticket() {
-        id = generalId++;
+        id = ++generalId;
         updateElement();
     }
 
-    public Ticket(String name, Coordinates coordinates, Double price, TicketType type, String venueName, Integer venueCapacity, VenueType venueType) {
-        id = generalId++;
+    public Ticket(int id, String name, Coordinates coordinates, Double price, TicketType type, String venueName, Integer venueCapacity, VenueType venueType) {
+        this.id = id;
         this.name = name;
         this.coordinates = coordinates;
         this.price = price;
@@ -93,5 +93,7 @@ public class Ticket {
     public String toString() {
         return "Id: " + id + " " + name + ", стоимость билета - " + price + type;
     }
+    public static int getGeneralId() {return  generalId;}
+    public static void setGeneralId(int generalId) {Ticket.generalId = generalId;}
 }
 

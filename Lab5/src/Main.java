@@ -12,7 +12,7 @@ public class Main {
         CommandDecoder commandDecoder = new CommandDecoder();
         System.out.println("Введите полный путь к файлу, из которого нужно считать коллекцию (оставьте пустым, если хотите оставить файл по умолчанию)");
         command = scanner.nextLine();
-        FileReader fileReader = new FileReader(commandDecoder.getCollection());
+        FileWorker fileReader = new FileWorker(commandDecoder.getCollection());
         try {
             fileReader.read(command);
         } catch (NumberFormatException | IncorrectInputDataException e) {

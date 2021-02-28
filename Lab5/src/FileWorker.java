@@ -6,10 +6,11 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class FileReader {
+public class FileWorker {
 
     private LinkedList<Ticket> c;
 
+    private  int id;
     private String name;
     private Coordinates coordinates;
     private Double price;
@@ -19,7 +20,7 @@ public class FileReader {
     private Integer venueCapacity;
     private VenueType venueType;
 
-    public FileReader(LinkedList<Ticket> c) {
+    public FileWorker(LinkedList<Ticket> c) {
         this.c = c;
     }
 
@@ -38,12 +39,22 @@ public class FileReader {
 
                 String[] data = inputStream.nextLine().split(",");
                 for (int k = 0; k < data.length; k++) {
+                    if (queue[k].equals("id")) {
+                        int m = Integer.parseInt(data[k]);
+                        if (m > 0) id = m;
+                        else throw new IncorrectInputDataException();
+                        for (Ticket t : c) {
+                            if (t.getId() == m) throw new IncorrectInputDataException();
+                        }
+                        if (m > Ticket.getGeneralId()) Ticket.setGeneralId(m);
+                    }
                     if (queue[k].equals("name")) if (!data[k].equals("")) name = data[k];
                     else throw new IncorrectInputDataException();
                     if (queue[k].equals("coordinates")) {
                         String[] s = data[k].split(" ");
                         if (s.length == 2 && Double.parseDouble(s[0]) > -48 && Double.parseDouble(s[1]) > -48) {
-                            coordinates = new Coordinates(Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+                            Double[] m = {Double.parseDouble(s[0]),Double.parseDouble(s[1])};
+                            coordinates = new Coordinates(m[0], m[1]);
                         } else throw new IncorrectInputDataException();
                     }
                     if (queue[k].equals("price"))
@@ -51,9 +62,11 @@ public class FileReader {
                         else throw new IncorrectInputDataException();
                     if (queue[k].equals("venueName")) if (!data[k].equals("")) venueName = data[k];
                     else throw new IncorrectInputDataException();
-                    if (queue[k].equals("venueCapacity"))
-                        if (Integer.parseInt(data[k]) > 0) venueCapacity = Integer.parseInt(data[k]);
+                    if (queue[k].equals("venueCapacity")) {
+                        int m = Integer.parseInt(data[k]);
+                        if (m > 0) venueCapacity = Integer.parseInt(data[k]);
                         else throw new IncorrectInputDataException();
+                    }
                     try {
                         if (queue[k].equals("type") && !data[k].equals(""))
                             type = TicketType.valueOf(data[k].toUpperCase());
@@ -65,19 +78,21 @@ public class FileReader {
                 }
                     //inputStream.nextLine();
                 if (coordinates == null || price == null) { throw new IncorrectInputDataException();
-                } else c.add(new Ticket(name, coordinates, price, type, venueName, venueCapacity, venueType));
-                        name = null;
-                        coordinates = null;
-                        price = null;
-                        type = null;
-                        venueName = null;
-                        venueCapacity = null;
-                        venueType = null;
+                } else {
+                    c.add(new Ticket(id, name, coordinates, price, type, venueName, venueCapacity, venueType));
+                    name = null;
+                    coordinates = null;
+                    price = null;
+                    type = null;
+                    venueName = null;
+                    venueCapacity = null;
+                    venueType = null;
+                }
                 //System.out.print(data + "|");
             }
             inputStream.close();
-
-
+            CommandDecoder cd = new CommandDecoder();
+            cd.sort(c);
         } catch (FileNotFoundException e){
             System.out.println("Не удалось найти укзанный файл");
         }

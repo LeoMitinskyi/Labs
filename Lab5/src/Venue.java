@@ -3,13 +3,14 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Venue {
+    private static int generalID = 10000;
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Integer capacity = -1; //Поле может быть null, Значение поля должно быть больше 0
     private VenueType type; //Поле может быть null
 
     public Venue(String name) {
-        id = new Date().getTime() + 1;
+        id = generalID++;
         Scanner scanner = new Scanner(System.in);
         this.name = name;
         String s;
