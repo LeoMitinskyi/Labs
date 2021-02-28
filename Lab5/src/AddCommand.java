@@ -11,10 +11,12 @@ public class AddCommand implements Command {
     @Override
     public void execute() {
         c.add(new Ticket());
+        CommandDecoder cd = new CommandDecoder();
+        cd.sort(c);
     }
 
     @Override
     public String toString() {
-        return "add {element} : добавить новый элемент в коллекцию";
+        return "add : добавить новый элемент в коллекцию";
     }
 }

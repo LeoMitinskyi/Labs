@@ -19,6 +19,13 @@ public class Ticket {
         updateElement();
     }
 
+    public Ticket(Double price) {
+        id = ++generalId;
+        this.price = price;
+        updateElement();
+
+    }
+
     public Ticket(int id, String name, Coordinates coordinates, Double price, TicketType type, String venueName, Integer venueCapacity, VenueType venueType) {
         this.id = id;
         this.name = name;
@@ -40,6 +47,13 @@ public class Ticket {
 
     public int getId() {return id;}
 
+    public String getName() {return name;}
+
+    public TicketType getType() {return type;}
+
+    public String getCoordinates() {return coordinates.getX().toString() + " " + coordinates.getY().toString();}
+
+    public Venue getVenue() {return venue;}
 
     public void updateElement() {
         String s = "";
@@ -62,16 +76,20 @@ public class Ticket {
 
         } while(coordinates == null);
 
-        do {
-            System.out.println("Введите стоимость билета: (она должна быть больше 0)");
-            String[] j = scanner.nextLine().split(" ");
-            try {
-                if (j.length == 1) price = Double.parseDouble(j[0]);
-                else {
-                    System.out.println("Введите корректное число аргументов");
+        if (price == null) {
+            do {
+                System.out.println("Введите стоимость билета: (она должна быть больше 0)");
+                String[] j = scanner.nextLine().split(" ");
+                try {
+                    if (j.length == 1) price = Double.parseDouble(j[0]);
+                    else {
+                        System.out.println("Введите корректное число аргументов");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Введите корректную стоимость");
                 }
-            } catch (NumberFormatException e) {System.out.println("Введите корректную стоимость");}
-        } while (price <= 0);
+            } while (price <= 0);
+        }
 
         do {
             System.out.println("Введите тип билета: (оставьте поле пустым, если хотите)");
@@ -87,6 +105,7 @@ public class Ticket {
         System.out.println("Куда билет? (если не хотите вводить, оставьте поле пустым, для продолжения напишите любой символ)");
         s = scanner.nextLine();
         if (!s.equals("")) venue = new Venue(s);
+        scanner.close();
     }
 
     @Override

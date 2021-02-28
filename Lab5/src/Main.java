@@ -1,5 +1,7 @@
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
@@ -15,8 +17,9 @@ public class Main {
         FileWorker fileReader = new FileWorker(commandDecoder.getCollection());
         try {
             fileReader.read(command);
-        } catch (NumberFormatException | IncorrectInputDataException e) {
-            System.out.println("Файл содержит некрректно введённые данные (убедитесь в и их правильности)" + e);
+        } catch (NumberFormatException | IncorrectInputDataException | NoSuchElementException e) {
+            System.out.println("Файл содержит некрректно введённые данные (убедитесь в и их правильности)"+e);
+            //commandDecoder.getCollection().removeAll(commandDecoder.getCollection());
         }
 
         do {
@@ -33,6 +36,7 @@ public class Main {
             } catch(Exception e) {System.out.println("Такой команды не существует!"+e.toString());};*/
 
         } while(! command.equals("exit"));
+        scanner.close();
 
     }
 }
