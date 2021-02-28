@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class AddIfMaxCommand implements CommandWithAdditionalArgument{
 
     private Double price;
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
 
     public AddIfMaxCommand(LinkedList<Ticket> c) {this.c = c;}
 

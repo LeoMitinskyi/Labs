@@ -1,15 +1,12 @@
-import java.io.DataOutput;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class FileWorker {
 
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
     //private Scanner scanner;
 
     private  int id;
@@ -95,7 +92,7 @@ public class FileWorker {
                 }
                 //System.out.print(data + "|");
             }
-            inputStream.close();
+            //inputStream.close();
             CommandDecoder cd = new CommandDecoder();
             cd.sort(c);
         } catch (FileNotFoundException e){
@@ -106,14 +103,16 @@ public class FileWorker {
     public void write(String fileNameDefined) {
         try {
             File file = new File(fileNameDefined);
-            String output = "";
+            String output;
             PrintWriter printWriter = new PrintWriter(file);
             printWriter.println("id,name,coordinates,price,type,venueName,venueCapacity,venueType");
-            for (Ticket t : c) {
-                 output = t.getId() + "," + t.getName() + "," + t.getCoordinates() + "," + t.getPrice() + "," + t.getType();
-                if (t.getVenue() != null) {output = output + "," + t.getVenue().getName() + "," + t.getVenue().getCapacity() + "," + t.getVenue().getType();}
-                printWriter.println(output.replace("null", ""));
-            }
+                for (Ticket t : c) {
+                    output = t.getId() + "," + t.getName() + "," + t.getCoordinates() + "," + t.getPrice() + "," + t.getType();
+                    if (t.getVenue() != null) {
+                        output = output + "," + t.getVenue().getName() + "," + t.getVenue().getCapacity() + "," + t.getVenue().getType();
+                    }
+                    printWriter.println(output.replace("null", ""));
+                }
             printWriter.close();
         } catch (FileNotFoundException e) {
             System.out.println("Не удалось найти указанный файл.");

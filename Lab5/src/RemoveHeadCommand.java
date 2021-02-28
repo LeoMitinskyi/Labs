@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 
 public class RemoveHeadCommand implements Command{
 
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
 
     public RemoveHeadCommand(LinkedList<Ticket> c) {this.c = c;}
 

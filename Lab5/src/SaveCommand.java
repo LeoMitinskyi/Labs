@@ -1,12 +1,9 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.LinkedList;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class SaveCommand implements Command{
 
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
 
     public SaveCommand(LinkedList<Ticket> c) {this.c = c;}
 

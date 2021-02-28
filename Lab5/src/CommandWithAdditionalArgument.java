@@ -1,4 +1,4 @@
 public interface CommandWithAdditionalArgument extends Command{
 
-    public void addArgument(String obj);
+    void addArgument(String obj);
 }

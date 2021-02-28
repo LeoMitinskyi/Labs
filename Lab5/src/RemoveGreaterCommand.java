@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class RemoveGreaterCommand implements CommandWithAdditionalArgument{
 
     private String ticketName;
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
 
     public RemoveGreaterCommand(LinkedList<Ticket> c) {this.c = c;}
 

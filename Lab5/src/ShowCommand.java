@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public class ShowCommand implements Command{
 
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
 
     public ShowCommand(LinkedList<Ticket> c) {
         this.c = c;

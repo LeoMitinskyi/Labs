@@ -1,8 +1,7 @@
-import java.util.Collection;
 import java.util.LinkedList;
 
 public class InfoCommand implements Command {
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
 
     public InfoCommand(LinkedList<Ticket> c) {
         this.c = c;

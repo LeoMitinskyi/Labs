@@ -1,15 +1,14 @@
 import java.util.Date;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class Ticket {
 
     private static int generalId = 10000;
 
-    private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private final int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    private Date creationDate = new Date(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final Date creationDate = new Date(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Double price; //Поле не может быть null, Значение поля должно быть больше 0
     private TicketType type; //Поле может быть null
     private Venue venue; //Поле может быть null
@@ -56,7 +55,7 @@ public class Ticket {
     public Venue getVenue() {return venue;}
 
     public void updateElement() {
-        String s = "";
+        String s;
         //id = (int) (creationDate.getTime() + 724600000);
         Scanner scanner = new Scanner(System.in);
         do {
@@ -105,7 +104,7 @@ public class Ticket {
         System.out.println("Куда билет? (если не хотите вводить, оставьте поле пустым, для продолжения напишите любой символ)");
         s = scanner.nextLine();
         if (!s.equals("")) venue = new Venue(s);
-        scanner.close();
+        //scanner.close();
     }
 
     @Override

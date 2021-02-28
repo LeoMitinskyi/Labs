@@ -3,5 +3,5 @@ public enum VenueType {
     LOFT,
     THEATRE,
     MALL,
-    STADIUM;
+    STADIUM
 }

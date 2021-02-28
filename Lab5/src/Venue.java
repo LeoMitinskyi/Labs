@@ -1,11 +1,10 @@
-import java.text.NumberFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Venue {
     private static int generalID = 10000;
+
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
-    private String name; //Поле не может быть null, Строка не может быть пустой
+    private final String name; //Поле не может быть null, Строка не может быть пустой
     private Integer capacity; //Поле может быть null, Значение поля должно быть больше 0
     private VenueType type; //Поле может быть null
 
@@ -32,7 +31,7 @@ public class Venue {
                 } catch (IllegalArgumentException e) {System.out.println("Введите корректное название типа");}
             }
         } while (type == null && !s.equals(""));
-        scanner.close();
+        //scanner.close();
     }
 
     public Venue(String name, Integer capacity,VenueType type) {
@@ -48,4 +47,5 @@ public class Venue {
     public Integer getCapacity() {return capacity;}
 
     public VenueType getType() {return type;}
+
 }

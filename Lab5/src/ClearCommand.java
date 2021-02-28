@@ -1,9 +1,8 @@
-import java.util.Collections;
 import java.util.LinkedList;
 
 public class ClearCommand implements Command{
 
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
 
     public ClearCommand(LinkedList<Ticket> c) {
         this.c = c;

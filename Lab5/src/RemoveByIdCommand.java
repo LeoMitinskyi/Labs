@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public class RemoveByIdCommand implements CommandWithAdditionalArgument{
 
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
     private int ID;
 
     public RemoveByIdCommand(LinkedList<Ticket> c) {

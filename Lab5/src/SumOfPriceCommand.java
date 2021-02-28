@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public class SumOfPriceCommand implements Command{
 
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
 
     public SumOfPriceCommand(LinkedList<Ticket> c) {this.c = c;}
 

@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class UpdateCommand implements CommandWithAdditionalArgument{
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
     private int ID;
 
     public UpdateCommand(LinkedList<Ticket> c) {
@@ -26,6 +26,6 @@ public class UpdateCommand implements CommandWithAdditionalArgument{
 
     @Override
     public String toString() {
-        return "update id {element} : обновить значение элемента коллекции, id которого равен заданному";
+        return "update id : обновить значение элемента коллекции, id которого равен заданному";
     }
 }

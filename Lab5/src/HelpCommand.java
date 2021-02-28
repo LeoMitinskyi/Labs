@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class HelpCommand implements Command {
 
-    private HashMap<String, Command> h;
+    private final HashMap<String, Command> h;
 
     public HelpCommand(HashMap<String, Command> h) {this.h = h;}
 

@@ -1,12 +1,9 @@
-import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.concurrent.ConcurrentMap;
 
 public class CommandDecoder {
 
-    private HashMap<String, Command> commands = new HashMap<>();
-    private LinkedList<Ticket> c = new LinkedList<>();
-    private Command cd;
+    private final HashMap<String, Command> commands = new HashMap<>();
+    private final LinkedList<Ticket> c = new LinkedList<>();
 
     {
         commands.put("help", new HelpCommand(commands));
@@ -33,7 +30,7 @@ public class CommandDecoder {
             s = com.split(" ");
             //System.out.println(s.toString());
             if (!s[0].equals("exit")) {
-                cd = commands.get(s[0].toLowerCase());
+                Command cd = commands.get(s[0].toLowerCase());
                 try {
                 if (s.length == 1 && Arrays.asList(cd.getClass().getInterfaces()).contains(Command.class)) cd.execute();
                 else if (s.length == 1) throw new IllegalCountOfArgumentsException();
@@ -55,9 +52,6 @@ public class CommandDecoder {
         c.sort(comparator);
     }
 
-    public void changeCollection(LinkedList<Ticket> c) {
-        this.c = c;
-    }
     public LinkedList<Ticket> getCollection() {
         return c;
     }

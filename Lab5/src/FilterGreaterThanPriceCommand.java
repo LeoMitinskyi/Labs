@@ -3,7 +3,7 @@ import java.util.LinkedList;
 
 public class FilterGreaterThanPriceCommand implements CommandWithAdditionalArgument{
 
-    private LinkedList<Ticket> c;
+    private final LinkedList<Ticket> c;
     private Double price;
 
     public FilterGreaterThanPriceCommand(LinkedList<Ticket> c) {

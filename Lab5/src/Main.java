@@ -1,11 +1,5 @@
-import java.io.FileNotFoundException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.io.PrintWriter;
-
-
 
 public class Main {
     public static void main(String[] args) {
@@ -29,7 +23,7 @@ public class Main {
                commandDecoder.decode(command);
             } catch(NullPointerException | IllegalArgumentException  e) {System.out.println("Такой команды не существует");}
             catch (IllegalCountOfArgumentsException e) {System.out.println("Неправльное количество аргументов");}
-            catch(IdNotFoundException e) {System.out.println("Билета с таким id не было найдено");};
+            catch(IdNotFoundException e) {System.out.println("Билета с таким id не было найдено");}
             /*try {
                 Command com = (Command) Class.forName(command+"Command").newInstance();
                 com.execute();
