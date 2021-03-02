@@ -1,5 +1,8 @@
 import java.util.*;
 
+/**
+ * Commands decoder class that which processes incoming commands and controls collection
+ */
 public class CommandDecoder {
 
     private final HashMap<String, Command> commands = new HashMap<>();
@@ -24,6 +27,10 @@ public class CommandDecoder {
 
     }
 
+    /**
+     * Command decoder
+     * @param com - incoming command
+     */
     public void decode(String com) {
 
             String[] s;
@@ -47,11 +54,19 @@ public class CommandDecoder {
             }
     }
 
+    /**
+     * Collection of tickets sorter by price and id
+     * @param c - collection of tickets
+     */
     public void sort(LinkedList<Ticket> c) {
         Comparator<Ticket> comparator = Comparator.comparing(Ticket::getPrice).thenComparing(Ticket::getId);
         c.sort(comparator);
     }
 
+    /**
+     * Getter {@link CommandDecoder#c}
+     * @return collection of tickets
+     */
     public LinkedList<Ticket> getCollection() {
         return c;
     }

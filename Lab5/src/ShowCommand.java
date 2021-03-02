@@ -1,5 +1,8 @@
 import java.util.LinkedList;
 
+/**
+ * Command class which outputs elements in the collection
+ */
 public class ShowCommand implements Command{
 
     private final LinkedList<Ticket> c;

@@ -4,6 +4,9 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * Class to work with files
+ */
 public class FileWorker {
 
     private final LinkedList<Ticket> c;
@@ -19,10 +22,18 @@ public class FileWorker {
     private Integer venueCapacity;
     private VenueType venueType;
 
+    /**
+     * Constructor with argument
+     * @param c - collection of tickets
+     */
     public FileWorker(LinkedList<Ticket> c) {
         this.c = c;
     }
 
+    /**
+     * File reader
+     * @param filePath - file to read
+     */
     public void read(String filePath) {
         try{
             String fileNameDefined;
@@ -100,6 +111,10 @@ public class FileWorker {
         }
     }
 
+    /**
+     * File writer
+     * @param fileNameDefined - file to write
+     */
     public void write(String fileNameDefined) {
         try {
             File file = new File(fileNameDefined);

@@ -2,10 +2,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Command class what executes script
+ */
 public class ExecuteScriptCommand implements CommandWithAdditionalArgument{
 
     private String filePath;
 
+    /**
+     * Execute script
+     */
     @Override
     public void execute() {
         try {
@@ -33,11 +39,18 @@ public class ExecuteScriptCommand implements CommandWithAdditionalArgument{
         }
     }
 
+    /**
+     * Getting file path to execute script {@link ExecuteScriptCommand#filePath}
+     * @param obj - file path
+     */
     @Override
     public void addArgument(String obj) {
         filePath = obj;
     }
 
+    /**
+     * @return info about command
+     */
     @Override
     public String toString() {
         return "execute_script <file_path> : считать и исполнить скрипт из указанного файла.";
