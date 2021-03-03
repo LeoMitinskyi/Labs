@@ -43,6 +43,6 @@ public class UpdateCommand implements CommandWithAdditionalArgument{
      */
     @Override
     public String toString() {
-        return "update id : обновить значение элемента коллекции, id которого равен заданному";
+        return "update <id> : обновить значение элемента коллекции, id которого равен заданному";
     }
 }

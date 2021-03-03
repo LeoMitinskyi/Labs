@@ -21,7 +21,7 @@ public class AddCommand implements Command {
     @Override
     public void execute() {
         c.add(new Ticket());
-        CommandDecoder cd = new CommandDecoder();
+        CommandDecoder cd = new CommandDecoder(c);
         cd.sort(c);
     }
 

@@ -22,7 +22,7 @@ public class AddIfMaxCommand implements CommandWithAdditionalArgument{
     public void execute() {
         if (price > c.getLast().getPrice()) c.add(new Ticket(price));
         else System.out.println("Новый элемент не может быть добавлен из-за низкой цены.");
-        CommandDecoder cd = new CommandDecoder();
+        CommandDecoder cd = new CommandDecoder(c);
         cd.sort(c);
     }
 

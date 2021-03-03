@@ -7,6 +7,10 @@ public class ShowCommand implements Command{
 
     private final LinkedList<Ticket> c;
 
+    /**
+     * Output elements in the collection
+     * @param c - collection of tickets
+     */
     public ShowCommand(LinkedList<Ticket> c) {
         this.c = c;
     }

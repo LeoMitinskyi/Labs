@@ -11,15 +11,21 @@ public class FileWorker {
 
     private final LinkedList<Ticket> c;
     //private Scanner scanner;
-
+    /**ticket id*/
     private  int id;
+    /**ticket name*/
     private String name;
+    /**ticket coordinates*/
     private Coordinates coordinates;
+    /**ticket price*/
     private Double price;
+    /**ticket type*/
     private TicketType type;
-
+    /**venue name*/
     private String venueName;
+    /**venue capacity*/
     private Integer venueCapacity;
+    /**venue type*/
     private VenueType venueType;
 
     /**
@@ -104,7 +110,7 @@ public class FileWorker {
                 //System.out.print(data + "|");
             }
             //inputStream.close();
-            CommandDecoder cd = new CommandDecoder();
+            CommandDecoder cd = new CommandDecoder(c);
             cd.sort(c);
         } catch (FileNotFoundException e){
             System.out.println("Не удалось найти укзанный файл");

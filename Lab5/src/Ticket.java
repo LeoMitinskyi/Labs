@@ -5,14 +5,21 @@ import java.util.Scanner;
  * Class Ticket with fields generalId, id, name, coordinates, creationDate, price, type and venue
 */
 public class Ticket {
-
+    /**ticket general id*/
     private static int generalId = 10000;
+    /**ticket id*/
     private final int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    /**ticket name*/
     private String name; //Поле не может быть null, Строка не может быть пустой
+    /**ticket coordinates*/
     private Coordinates coordinates; //Поле не может быть null
+    /**ticket creation date*/
     private final Date creationDate = new Date(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    /**ticket price*/
     private Double price; //Поле не может быть null, Значение поля должно быть больше 0
+    /**ticket type*/
     private TicketType type; //Поле может быть null
+    /**ticket venue*/
     private Venue venue; //Поле может быть null
 
     /**
@@ -32,9 +39,9 @@ public class Ticket {
      * @param price - price of the Ticket (> 0)
      */
     public Ticket(Double price) {
-        id = ++generalId;
         this.price = price;
         updateElement();
+        id = ++generalId;
 
     }
 
@@ -116,7 +123,8 @@ public class Ticket {
      */
     public void updateElement() {
         String s;
-        //id = (int) (creationDate.getTime() + 724600000);
+        coordinates = null;
+        type = null;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Введите название билета: ");
@@ -128,21 +136,22 @@ public class Ticket {
             System.out.println("Введите координаты: (в формате x y)");
             String[] j = scanner.nextLine().split(" ");
             try {
-                if (j.length > 2 || j.length == 0) System.out.println("Введите корректное число аргументов");
+                if (j.length != 2) System.out.println("Введите корректное число аргументов");
                 else if (Double.parseDouble(j[0]) > -48 && Double.parseDouble(j[1]) > -48) coordinates = new Coordinates(Double.parseDouble(j[0]), Double.parseDouble(j[1]));
                 else System.out.println("Введите корректные значения x и y (они должны быть больше -48)");
             } catch (NumberFormatException e) {System.out.println("Введите корректные значения x и y (они должны быть больше -48)");}
 
         } while(coordinates == null);
 
-        if (price == null) {
+        if (id != 0 || price == null) {
+            price =  -1.0;
             do {
                 System.out.println("Введите стоимость билета: (она должна быть больше 0)");
                 String[] j = scanner.nextLine().split(" ");
                 try {
                     if (j.length == 1) price = Double.parseDouble(j[0]);
                     else {
-                        System.out.println("Введите корректное число аргументов");
+                        System.out.println("Введите корректное число");
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("Введите корректную стоимость");

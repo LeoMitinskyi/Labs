@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -8,7 +9,10 @@ import java.util.Scanner;
 public class ExecuteScriptCommand implements CommandWithAdditionalArgument{
 
     private String filePath;
+    private final LinkedList<Ticket> c;
 
+
+    public ExecuteScriptCommand(LinkedList<Ticket> c) {this.c = c;}
     /**
      * Execute script
      */
@@ -18,8 +22,7 @@ public class ExecuteScriptCommand implements CommandWithAdditionalArgument{
             File file = new File(filePath);
             StringBuilder wrongCommands = new StringBuilder();
             Scanner scanner = new Scanner(file);
-            CommandDecoder cd = new CommandDecoder();
-
+            CommandDecoder cd = new CommandDecoder(c);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
             try {
