@@ -23,7 +23,7 @@ public class ExecuteScriptCommand implements CommandWithAdditionalArgument{
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
             try {
-                if (command.equals("execute_script " + filePath)) wrongCommands.append(command).append(", ");
+                if (command.contains("execute_script")) wrongCommands.append(command).append(", ");
                 else {
                     System.out.println(command);
                     if (command.equals("exit")) System.exit(0);

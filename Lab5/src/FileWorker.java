@@ -53,7 +53,7 @@ public class FileWorker {
                     if (!data[k].equals("")) {
                         if (queue[k].equals("id")) {
                             int m = Integer.parseInt(data[k]);
-                            if (m > 0) id = m;
+                            if (m > 0 && m < 2147000000) id = m;
                             else throw new IncorrectInputDataException();
                             for (Ticket t : c) {
                                 if (t.getId() == m) throw new IncorrectInputDataException();

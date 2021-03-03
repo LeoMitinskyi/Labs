@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -20,7 +21,13 @@ public class InfoCommand implements Command {
     public void execute() {
         System.out.println("Тип коллекции: " + c.getClass());
         System.out.println("Количество элементов: " + c.size());
-        if (c.size() != 0 ) System.out.println("Время создания: " + c.getFirst().getDateOfCreation());
+        if (c.size() != 0 ) {
+            Date date = new Date();
+            for (Ticket t : c) {
+                if (t.getDateOfCreation().getTime() < date.getTime()) date = t.getDateOfCreation();
+            }
+            System.out.println("Время создания: " + date);
+        }
     }
 
     /**

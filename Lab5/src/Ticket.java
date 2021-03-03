@@ -68,8 +68,8 @@ public class Ticket {
      * @return creation date
      */
 
-    public String getDateOfCreation() {
-        return creationDate.toString();
+    public Date getDateOfCreation() {
+        return creationDate;
     }
 
     /**
