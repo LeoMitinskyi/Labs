@@ -161,7 +161,7 @@ public class Ticket {
             }
         } while (type == null && !s.equals(""));
 
-        System.out.println("Куда билет? (если не хотите вводить, оставьте поле пустым, для продолжения напишите любой символ)");
+        System.out.println("Куда билет? (если не хотите вводить, оставьте поле пустым, для продолжения напишите название места)");
         s = scanner.nextLine();
         if (!s.equals("")) venue = new Venue(s);
         //scanner.close();
