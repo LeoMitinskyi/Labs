@@ -19,7 +19,7 @@ public class SaveCommand implements Command{
      */
     @Override
     public void execute(){
-        String fileNameDefined = "D:/Java/Labs/Lab5/Col.csv";
+        String fileNameDefined = "Col.csv";
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите путь до файла сохранения: (оставьте поле пустым, чтобы оставить файл по умолчанию)");
         String filePath = scanner.nextLine();

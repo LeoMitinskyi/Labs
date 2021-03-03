@@ -173,7 +173,7 @@ public class Ticket {
      */
     @Override
     public String toString() {
-        return "Id: " + id + " " + name + ", стоимость билета - " + price + type;
+        return "Id: " + id + ", " + name + ", стоимость билета - " + price ;
     }
 
     /**
@@ -184,7 +184,7 @@ public class Ticket {
 
     /**
      * Setter {@link Ticket#generalId}
-     * @param generalId
+     * @param generalId - general id
      */
     public static void setGeneralId(int generalId) {Ticket.generalId = generalId;}
 }

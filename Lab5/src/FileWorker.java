@@ -38,7 +38,7 @@ public class FileWorker {
         try{
             String fileNameDefined;
             if (filePath.equals("")) {
-                fileNameDefined = "D:/Java/Labs/Lab5/Collection.csv";
+                fileNameDefined = "Collection.csv";
             } else fileNameDefined = filePath;
             File file = new File(fileNameDefined);
             Scanner inputStream = new Scanner(file);
