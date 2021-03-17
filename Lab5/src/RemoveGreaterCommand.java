@@ -4,8 +4,9 @@ import java.util.LinkedList;
  * Command class that remove tickets from the collection greater than given one
  */
 public class RemoveGreaterCommand implements CommandWithAdditionalArgument{
-
+    /**ticket name*/
     private String ticketName;
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**
@@ -19,15 +20,16 @@ public class RemoveGreaterCommand implements CommandWithAdditionalArgument{
      */
     @Override
     public void execute() {
-       boolean b = false;
-       boolean b1 = false;
+       Ticket ticket = null;
         for (Ticket t : c) {
-            if (b) b1 = c.remove(t);
-            if (t.getName().equals(ticketName)) b = true;
+            if (t.getName().equals(ticketName)) ticket = t;
         }
-        if (!b) System.out.println("Элемента с таким именем найти не удалось.");
-        else if (b1) System.out.println("Сколько-то элементов было удалено");
-        else System.out.println("К сожалению, ничего удалить не удалось");
+        if (ticket == null) System.out.println("Элемента с таким именем найти не удалось.");
+        else {
+            Ticket finalTicket = ticket;
+            if (c.removeIf(i -> i.getPrice() > finalTicket.getPrice())) System.out.println("Сколько-то элементов было удалено");
+            else System.out.println("К сожалению, ничего удалить не удалось");
+        }
     }
 
     /**

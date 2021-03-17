@@ -3,12 +3,12 @@ import java.util.HashMap;
 /**
  * Command class that outputs other commands
  */
-public class HelpCommand implements Command {
-
+public class HelpCommand implements CommandWithoutAdditionalArgument {
+    /**hash map with all commands and their classes*/
     private final HashMap<String, Command> h;
 
     /**
-     * Constructor with paremeter
+     * Constructor with parameter
      * @param h - collection of commands
      */
     public HelpCommand(HashMap<String, Command> h) {this.h = h;}

@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -16,7 +15,7 @@ public class Main {
         try {
             fileReader.read(command);
         } catch (NumberFormatException | IncorrectInputDataException | NoSuchElementException e) {
-            System.out.println("Файл содержит некрректно введённые данные (убедитесь в и их правильности)");
+            System.out.println("Файл содержит некорректно введённые данные (убедитесь в и их правильности)");
         }
 
         do {
@@ -25,8 +24,7 @@ public class Main {
             try {
                commandDecoder.decode(command);
             } catch(NullPointerException | IllegalArgumentException  e) {System.out.println("Такой команды не существует");}
-            catch (IllegalCountOfArgumentsException e) {System.out.println("Неправльное количество аргументов");}
-            catch(IdNotFoundException e) {System.out.println("Билета с таким id не было найдено");}
+            catch (IllegalCountOfArgumentsException | IdNotFoundException e) {System.out.println(e.getMessage());}
         } while(! command.equals("exit"));
         scanner.close();
 

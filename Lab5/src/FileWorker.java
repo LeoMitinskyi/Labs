@@ -8,9 +8,10 @@ import java.util.Scanner;
  * Class to work with files
  */
 public class FileWorker {
-
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
-    //private Scanner scanner;
+    /**file path*/
+    String fileNameDefined = "Collection.csv";
     /**ticket id*/
     private  int id;
     /**ticket name*/
@@ -42,19 +43,15 @@ public class FileWorker {
      */
     public void read(String filePath) {
         try{
-            String fileNameDefined;
-            if (filePath.equals("")) {
-                fileNameDefined = "Collection.csv";
-            } else fileNameDefined = filePath;
+            if (!filePath.equals("")) fileNameDefined = filePath;
             File file = new File(fileNameDefined);
             Scanner inputStream = new Scanner(file);
-            //inputStream.useDelimiter(",");
-            String[] queue = inputStream.nextLine().split(",");
-            //System.out.println(Arrays.toString(queue) + queue.length);
+            String delimiterDeterminant = inputStream.nextLine();
+            String delimiter = ";";
+            if (delimiterDeterminant.split(",").length > delimiterDeterminant.split(";").length) delimiter = ",";
+            String[] queue = delimiterDeterminant.split(delimiter);
             while(inputStream.hasNextLine()){
-
-                String[] data = inputStream.nextLine().split(",");
-                //System.out.println(data.length);
+                String[] data = inputStream.nextLine().split(delimiter);
                 for (int k = 0; k < data.length; k++) {
                     if (!data[k].equals("")) {
                         if (queue[k].equals("id")) {
@@ -97,7 +94,6 @@ public class FileWorker {
                         }
                     }
                 }
-                    //inputStream.nextLine();
                 if (coordinates == null || price == null) { throw new IncorrectInputDataException();
                 } else {
                     c.add(new Ticket(id, name, coordinates, price, type, venueName, venueCapacity, venueType));
@@ -109,9 +105,7 @@ public class FileWorker {
                     venueCapacity = null;
                     venueType = null;
                 }
-                //System.out.print(data + "|");
             }
-            //inputStream.close();
             CommandDecoder cd = new CommandDecoder(c);
             cd.sort(c);
         } catch (FileNotFoundException e){

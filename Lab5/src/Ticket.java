@@ -5,6 +5,7 @@ import java.util.Scanner;
  * Class Ticket with fields generalId, id, name, coordinates, creationDate, price, type and venue
 */
 public class Ticket {
+
     /**ticket general id*/
     private static int generalId = 10000;
     /**ticket id*/
@@ -36,7 +37,7 @@ public class Ticket {
      * Constructor with parameters
      * @see Ticket#Ticket()
      * @see Ticket#Ticket(int, String, Coordinates, Double, TicketType, String, Integer, VenueType)
-     * @param price - price of the Ticket (> 0)
+     * @param price - price of the Ticket
      */
     public Ticket(Double price) {
         this.price = price;
@@ -52,11 +53,11 @@ public class Ticket {
      * @param id - ticket id (generate automatically)
      * @param name - ticket name (!= null)
      * @param coordinates - ticket coordinates (x and y, more than -48)
-     * @param price - ticket price (> 0)
+     * @param price - ticket price
      * @param type - ticket type (VIP, USUAL, BUDGETARY, CHEAP)
      * @param venueName - venue name (!= null)
-     * @param venueCapacity - venue capacity (> 0)
-     * @param venueType - vanue type (BAR, LOFT, THEATRE, MALL, STADIUM)
+     * @param venueCapacity - venue capacity
+     * @param venueType - venue type (BAR, LOFT, THEATRE, MALL, STADIUM)
      */
 
     public Ticket(int id, String name, Coordinates coordinates, Double price, TicketType type, String venueName, Integer venueCapacity, VenueType venueType) {
@@ -134,7 +135,10 @@ public class Ticket {
 
         do {
             System.out.println("Введите координаты: (в формате x y)");
-            String[] j = scanner.nextLine().split(" ");
+            String p = scanner.nextLine();
+            String[] j = p.split(" ");
+            String[] jj = p.split("\t");
+            if (jj.length > j.length) j = jj;
             try {
                 if (j.length != 2) System.out.println("Введите корректное число аргументов");
                 else if (Double.parseDouble(j[0]) > -48 && Double.parseDouble(j[1]) > -48) coordinates = new Coordinates(Double.parseDouble(j[0]), Double.parseDouble(j[1]));

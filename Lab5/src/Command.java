@@ -1,5 +1,5 @@
 /**
- * Basic interface for all commands without additional argument
+ * Basic interface for all commands
  */
 public interface Command {
     /**
@@ -7,5 +7,10 @@ public interface Command {
      */
     void execute();
 
+    /**
+     * @param countOfArguments - count of arguments
+     * @return true or false depending on the count of arguments
+     */
+    boolean correctCountOfArguments(int countOfArguments);
 }
 

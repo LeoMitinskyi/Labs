@@ -3,8 +3,8 @@ import java.util.LinkedList;
 /**
  * Command class that outputs sum of the ticket price
  */
-public class SumOfPriceCommand implements Command{
-
+public class SumOfPriceCommand implements CommandWithoutAdditionalArgument{
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**

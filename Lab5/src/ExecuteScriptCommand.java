@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -7,9 +8,12 @@ import java.util.Scanner;
  * Command class what executes script
  */
 public class ExecuteScriptCommand implements CommandWithAdditionalArgument{
-
+    /**file path to execute the script*/
     private String filePath;
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
+    /**hash set that contains all execute script commands in file*/
+    private static final HashSet<String> executeScriptCommands = new HashSet<>();
 
 
     public ExecuteScriptCommand(LinkedList<Ticket> c) {this.c = c;}
@@ -20,23 +24,26 @@ public class ExecuteScriptCommand implements CommandWithAdditionalArgument{
     public void execute() {
         try {
             File file = new File(filePath);
-            StringBuilder wrongCommands = new StringBuilder();
             Scanner scanner = new Scanner(file);
             CommandDecoder cd = new CommandDecoder(c);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
+
             try {
-                if (command.contains("execute_script")) wrongCommands.append(command).append(", ");
-                else {
-                    System.out.println(command);
-                    if (command.equals("exit")) System.exit(0);
-                    cd.decode(command);
+                if (executeScriptCommands.contains(command))
+                {
+                    System.out.println("Была встречена бесконечная рекурсия");
+                    break;
                 }
+                if (command.contains("execute_script")) executeScriptCommands.add(command);
+                System.out.println(command);
+                if (command.equals("exit")) System.exit(0);
+                cd.decode(command);
             } catch(NullPointerException | IllegalArgumentException | IllegalCountOfArgumentsException | IdNotFoundException e) {
-                wrongCommands.append(command).append(", ");
+                System.out.println("Не удалось выполнить команду");
             }
         }
-        System.out.println("Не удалось исполнить следующие команды: " + wrongCommands);
+        executeScriptCommands.removeAll(executeScriptCommands);
         } catch (FileNotFoundException e) {
             System.out.println("Указанный файл не был найден.");
         }

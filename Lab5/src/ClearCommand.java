@@ -3,8 +3,8 @@ import java.util.LinkedList;
 /**
  * Command class that clears the collection
  */
-public class ClearCommand implements Command{
-
+public class ClearCommand implements CommandWithoutAdditionalArgument{
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**
@@ -20,9 +20,8 @@ public class ClearCommand implements Command{
      */
     @Override
     public void execute() {
-        boolean b = c.removeAll(c);
-        if (b) System.out.println("Коллекция была очищена.");
-        else System.out.println("Коллекция итак была пуста.");
+        String s = c.removeAll(c) ? "Коллекция была очищена." : "Коллекция итак была пуста.";
+        System.out.println(s);
     }
 
     /**

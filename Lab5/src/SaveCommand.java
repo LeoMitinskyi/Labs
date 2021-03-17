@@ -4,9 +4,11 @@ import java.util.Scanner;
 /**
  * Command class that saves a collection of tickets
  */
-public class SaveCommand implements Command{
-
+public class SaveCommand implements CommandWithoutAdditionalArgument{
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
+    /**file path*/
+    private String fileNameDefined = "Col.csv";
 
     /**
      * Constructor with parameter
@@ -19,7 +21,7 @@ public class SaveCommand implements Command{
      */
     @Override
     public void execute(){
-        String fileNameDefined = "Col.csv";
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите путь до файла сохранения: (оставьте поле пустым, чтобы оставить файл по умолчанию)");
         String filePath = scanner.nextLine();

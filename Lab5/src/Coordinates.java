@@ -2,8 +2,9 @@
  * Class that contains coordinates
  */
 public class Coordinates {
-
+    /**coordinate x*/
     private final Double x; //Значение поля должно быть больше -48, Поле не может быть null
+    /**coordinate y*/
     private final Double y;
 
     /**

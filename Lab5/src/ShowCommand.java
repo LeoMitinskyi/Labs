@@ -3,8 +3,8 @@ import java.util.LinkedList;
 /**
  * Command class which outputs elements in the collection
  */
-public class ShowCommand implements Command{
-
+public class ShowCommand implements CommandWithoutAdditionalArgument{
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**

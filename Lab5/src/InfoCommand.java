@@ -4,7 +4,8 @@ import java.util.LinkedList;
 /**
  * Command class which outputs info about collection
  */
-public class InfoCommand implements Command {
+public class InfoCommand implements CommandWithoutAdditionalArgument {
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**

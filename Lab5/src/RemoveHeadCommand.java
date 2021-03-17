@@ -4,8 +4,8 @@ import java.util.NoSuchElementException;
 /**
  * Command class that removes first element in the collection
  */
-public class RemoveHeadCommand implements Command{
-
+public class RemoveHeadCommand implements CommandWithoutAdditionalArgument{
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**

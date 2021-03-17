@@ -4,7 +4,9 @@ import java.util.LinkedList;
  * Command class that updates the ticket with the given id
  */
 public class UpdateCommand implements CommandWithAdditionalArgument{
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
+    /**ticket id*/
     private int ID;
 
     /**

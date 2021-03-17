@@ -4,8 +4,9 @@ import java.util.*;
  * Commands decoder class that which processes incoming commands and controls collection
  */
 public class CommandDecoder {
-
+    /**hash map with all commands and their classes*/
     private final LinkedHashMap<String, Command> commands = new LinkedHashMap<>();
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**
@@ -52,22 +53,19 @@ public class CommandDecoder {
      */
     public void decode(String com) {
 
-            String[] s;
+            String[] s, s1;
             s = com.split(" ");
-            //System.out.println(s.toString());
+            s1 = com.split("\t");
+            if (s1.length > s.length) s = s1;
+            if (s.length == 0) throw new NullPointerException();
             if (!s[0].equals("exit")) {
+                int countOfArguments = s.length - 1;
                 Command cd = commands.get(s[0].toLowerCase());
                 try {
-                if (Arrays.asList(cd.getClass().getInterfaces()).contains(Command.class))  {
-                    if (s.length == 1) cd.execute();
-                    else throw new IllegalCountOfArgumentsException();
-                }
-
-                    if (s.length == 2 && Arrays.asList(cd.getClass().getInterfaces()).contains(CommandWithAdditionalArgument.class)) {
-                        ((CommandWithAdditionalArgument) cd).addArgument(s[1]);
+                    if (cd.correctCountOfArguments(countOfArguments))  {
+                        if (countOfArguments == 1) ((CommandWithAdditionalArgument) cd).addArgument(s[1]);
                         cd.execute();
-                    } else if (s.length > 2) throw new IllegalCountOfArgumentsException();
-
+                    } else throw new IllegalCountOfArgumentsException();
                 } catch (NumberFormatException e) {
                     System.out.println("Аргумент имеет неправльный тип (для id - int, для price - double)");
                 }

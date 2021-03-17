@@ -4,8 +4,9 @@ import java.util.LinkedList;
  * Command class that outputs the ticket by its id and delete it
  */
 public class RemoveByIdCommand implements CommandWithAdditionalArgument{
-
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
+    /**ticket id*/
     private int ID;
 
     /**

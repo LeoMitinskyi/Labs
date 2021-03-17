@@ -5,13 +5,14 @@ import java.util.LinkedList;
  */
 
 public class AddIfMaxCommand implements CommandWithAdditionalArgument{
-
+    /**price of a new ticket*/
     private Double price;
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**
      * Constructor with parameter
-     * @param c
+     * @param c - collection of tickets
      */
     public AddIfMaxCommand(LinkedList<Ticket> c) {this.c = c;}
 

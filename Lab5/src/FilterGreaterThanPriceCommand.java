@@ -5,8 +5,9 @@ import java.util.LinkedList;
  * Command class that outputs elements which price is greater than given one
  */
 public class FilterGreaterThanPriceCommand implements CommandWithAdditionalArgument{
-
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
+    /**price of the ticket*/
     private Double price;
 
     /**

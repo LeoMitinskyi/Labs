@@ -3,8 +3,8 @@ import java.util.LinkedList;
 /**
  * Command class that outputs the types of tickets in collection in descending order
  */
-public class PrintFieldDescendingTypeCommand implements Command{
-
+public class PrintFieldDescendingTypeCommand implements CommandWithoutAdditionalArgument{
+    /**collection of tickets*/
     private final LinkedList<Ticket> c;
 
     /**
