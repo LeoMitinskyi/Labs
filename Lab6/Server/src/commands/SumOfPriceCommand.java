@@ -1,5 +1,5 @@
 package commands;
-import serverok.collection.Ticket;
+import collection.Ticket;
 
 import java.util.LinkedList;
 
@@ -19,10 +19,7 @@ public class SumOfPriceCommand extends CommandWithoutAdditionalArgument{
      */
     @Override
     public String execute() {
-        double k = 0;
-        for (Ticket t : c) {
-            k += t.getPrice();
-        }
+        double k = c.stream().mapToDouble(Ticket::getPrice).sum();
         return "Общая стоимость билетов: " + k;
     }
 

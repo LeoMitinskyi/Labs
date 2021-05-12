@@ -1,5 +1,5 @@
 package commands;
-import clientik.collection.Ticket;
+import collection.Ticket;
 
 import java.util.LinkedList;
 
@@ -25,9 +25,7 @@ public class FilterGreaterThanPriceCommand extends CommandWithAdditionalArgument
     @Override
     public String execute() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Ticket t : c) {
-            if (t.getPrice() > price) stringBuilder.append(t + "\n");
-        }
+        c.stream().filter(p -> p.getPrice() > price).forEach(stringBuilder::append);
         return stringBuilder.toString();
     }
 

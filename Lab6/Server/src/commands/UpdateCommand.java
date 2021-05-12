@@ -1,6 +1,6 @@
 package commands;
 
-import serverok.collection.Ticket;
+import collection.Ticket;
 import exceptions.IdNotFoundException;
 
 import java.util.LinkedList;
@@ -27,13 +27,8 @@ public class UpdateCommand extends CommandWithAdditionalArgument{
      */
     @Override
     public String execute() {
-        int k = 0;
-        for (Ticket i : c) {
-            if (i.getId() == ID) {
-                ticket = i;
-            } else k++;
-        }
-        if (k == c.size()) throw new IdNotFoundException();
+        c.stream().filter(t -> t.getId() == ID).forEach(t -> ticket = t);
+        if (ticket == null) throw new IdNotFoundException();
         return "Элемент с заданным id был успешно обновлён";
     }
 

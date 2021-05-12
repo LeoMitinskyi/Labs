@@ -1,15 +1,16 @@
 package commands;
 
-import clientik.collection.Ticket;
+import collection.Ticket;
 
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 /**
  * Command class that remove tickets from the collection greater than given one
  */
 public class RemoveGreaterCommand extends CommandWithAdditionalArgument{
     /**ticket name*/
-    private String ticketName;
+    private int id;
 
     /**
      * Constructor with parameter
@@ -17,18 +18,21 @@ public class RemoveGreaterCommand extends CommandWithAdditionalArgument{
      */
     public RemoveGreaterCommand(LinkedList<Ticket> c) {this.c = c;}
 
+
+
     /**
      * Remove tickets from the collection greater than given one
      */
     @Override
     public String execute() {
-       Ticket ticket = null;
-        for (Ticket t : c) {
-            if (t.getName().equals(ticketName)) ticket = t;
+        Ticket ticket;
+        try {
+            ticket = c.stream().filter(t -> t.getId() == id).collect(Collectors.toList()).get(0);
+        } catch (IndexOutOfBoundsException e) {
+            return "Элемента с таким именем найти не удалось.";
         }
-        if (ticket == null) return "Элемента с таким именем найти не удалось.";
-            Ticket finalTicket = ticket;
-            if (c.removeIf(i -> i.getPrice() > finalTicket.getPrice())) return "Сколько-то элементов было удалено";
+        Ticket finalTicket = ticket;
+        if (c.removeIf(i -> i.getPrice() > finalTicket.getPrice())) return "Сколько-то элементов было удалено";
         return "К сожалению, ничего удалить не удалось";
     }
 
@@ -38,7 +42,9 @@ public class RemoveGreaterCommand extends CommandWithAdditionalArgument{
      */
     @Override
     public void addArgument(String obj) {
-        ticketName = obj;
+        String maxValue = String.valueOf(Integer.MAX_VALUE);
+        if (maxValue.length() > obj.length()) id = Integer.parseInt(obj);
+        else throw new NumberFormatException();
     }
 
     /**
@@ -46,6 +52,6 @@ public class RemoveGreaterCommand extends CommandWithAdditionalArgument{
      */
     @Override
     public String toString() {
-        return "remove_greater <ticket name> : удалить из коллекции все элементы, превышающие заданный";
+        return "remove_greater <ticket id> : удалить из коллекции все элементы, превышающие заданный";
     }
 }

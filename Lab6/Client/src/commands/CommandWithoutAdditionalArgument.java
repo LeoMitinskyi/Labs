@@ -1,6 +1,6 @@
 package commands;
 
-import clientik.collection.Ticket;
+import collection.Ticket;
 
 import java.util.LinkedList;
 
@@ -12,7 +12,7 @@ public abstract class CommandWithoutAdditionalArgument implements Command{
     protected LinkedList<Ticket> c;
 
 
-    void updateCollection(LinkedList<Ticket> collection) {
+    public void updateCollection(LinkedList<Ticket> collection) {
         c = collection;
     }
     /**

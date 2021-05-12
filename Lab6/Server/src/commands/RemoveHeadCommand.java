@@ -1,6 +1,6 @@
 package commands;
 
-import serverok.collection.Ticket;
+import collection.Ticket;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;

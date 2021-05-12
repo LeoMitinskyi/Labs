@@ -22,8 +22,13 @@ public class HelpCommand extends CommandWithoutAdditionalArgument {
     public String execute() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Command com : h.values()) {
-            if (com.getClass() != HelpCommand.class) stringBuilder.append(com + "\n");
+           stringBuilder.append(com).append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "help : вывести справку по доступным командам";
     }
 }

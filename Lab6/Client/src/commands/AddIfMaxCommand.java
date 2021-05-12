@@ -1,7 +1,7 @@
 package commands;
 
-import clientik.CommandDecoder;
-import clientik.collection.Ticket;
+import mainPart.CommandDecoder;
+import collection.Ticket;
 
 import java.util.LinkedList;
 
@@ -34,8 +34,7 @@ public class AddIfMaxCommand extends CommandWithAdditionalArgument{
     }
 
     public boolean canNewTicketBeAdded() {
-        if (price > c.getLast().getPrice()) return true;
-        return false;
+        return price > c.getLast().getPrice();
     }
 
     /**

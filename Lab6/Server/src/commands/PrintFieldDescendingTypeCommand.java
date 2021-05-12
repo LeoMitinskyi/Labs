@@ -1,6 +1,6 @@
 package commands;
 
-import serverok.collection.Ticket;
+import collection.Ticket;
 
 import java.util.LinkedList;
 
@@ -21,10 +21,7 @@ public class PrintFieldDescendingTypeCommand extends CommandWithoutAdditionalArg
     @Override
     public String execute() {
         StringBuilder s = new StringBuilder();
-        for (Ticket t : c) {
-            if (t.getType() != null) s.insert(0, t.getType() + "\n");
-            else s.insert(0, "Тип этого билета не был указан \n");
-        }
+        c.stream().filter(t -> t.getType() != null).forEach(t -> s.insert(0, t.getType() + "\n"));
         return s.toString();
     }
 

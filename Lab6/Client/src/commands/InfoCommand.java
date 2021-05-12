@@ -1,6 +1,6 @@
 package commands;
 
-import clientik.collection.Ticket;
+import collection.Ticket;
 
 import java.util.Date;
 import java.util.LinkedList;

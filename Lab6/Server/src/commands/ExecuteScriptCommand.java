@@ -1,8 +1,10 @@
 package commands;
 
-import serverok.CommandDecoder;
-import serverok.collection.Ticket;
-import exceptions.*;
+import exceptions.IdNotFoundException;
+import exceptions.IllegalCountOfArgumentsException;
+import exceptions.InfiniteRecursionException;
+import mainPart.CommandDecoder;
+import collection.Ticket;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,47 +18,58 @@ import java.util.Scanner;
 public class ExecuteScriptCommand extends CommandWithAdditionalArgument{
     /**file path to execute the script*/
     private String filePath;
+    /**collection of tickets*/
+    private final LinkedList<Ticket> c;
     /**hash set that contains all execute script commands in file*/
-    private static final HashSet<String> executeScriptCommands = new HashSet<>();
+    public static final HashSet<String> executeScriptCommands = new HashSet<>();
+    private transient Scanner scanner;
+    private CommandDecoder cd;
 
 
-    public ExecuteScriptCommand(LinkedList<Ticket> c) {
-        this.c = c;
-    }
+    public ExecuteScriptCommand(LinkedList<Ticket> c) {this.c = c;}
+
+
     /**
      * Execute script
      */
     @Override
     public String execute() {
-        StringBuilder result = new StringBuilder();
-        boolean isItContainsExit = false;
+        File file = new File(filePath);
         try {
-            File file = new File(filePath);
-            Scanner scanner = new Scanner(file);
-            CommandDecoder cd = new CommandDecoder(c);
-        while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Указанный файл не был найден");
+        }
+        catch (SecurityException ex) {
+            System.out.println("Не хватает прав доступа для работы с файлом.");
+        }
+        cd = new CommandDecoder(c);
+        //executeScriptCommands.clear();
+        return "Начало выполнения скрипта";
+    }
+
+    public String giveNewCommandFromFile() throws InfiniteRecursionException {
+
+        String command;
+        if (scanner.hasNextLine()) {
+            command = scanner.nextLine();
             try {
-                if (executeScriptCommands.contains(command))
-                {
-                    result.append("Была встречена бесконечная рекурсия \n");
-                    break;
+                if (executeScriptCommands.contains(command)) {
+                    throw new InfiniteRecursionException();
                 }
                 if (command.contains("execute_script")) executeScriptCommands.add(command);
-                result.append(command);
-                if (command.equals("exit")) return result.toString();
+                System.out.println(command);
+                if (command.equals("exit")) System.exit(0);
                 cd.decode(command);
-            } catch(NullPointerException | IllegalArgumentException | IllegalCountOfArgumentsException | IdNotFoundException e) {
-                result.append("Не удалось выполнить команду \n");
+                return command;
+            } catch (NullPointerException | IllegalArgumentException | IllegalCountOfArgumentsException | IdNotFoundException e) {
+                System.out.println("Не удалось выполнить команду");
             }
-        }
-        executeScriptCommands.removeAll(executeScriptCommands);
-        } catch (FileNotFoundException e) {
-            return "Указанный файл не был найден.";
-        }
-        result.append("Выполнение скрипта было завершенно");
-        return result.toString();
+        } else return null;
+        return "Unreadable Command";
     }
+
+    public Scanner getScanner() {return scanner;}
 
     /**
      * Getting file path to execute script {@link ExecuteScriptCommand#filePath}
@@ -65,6 +78,7 @@ public class ExecuteScriptCommand extends CommandWithAdditionalArgument{
     @Override
     public void addArgument(String obj) {
         filePath = obj;
+
     }
 
     /**

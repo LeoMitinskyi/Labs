@@ -1,6 +1,6 @@
 package commands;
 
-import serverok.collection.Ticket;
+import collection.Ticket;
 
 import java.util.LinkedList;
 
@@ -22,8 +22,7 @@ public class ClearCommand extends CommandWithoutAdditionalArgument{
      */
     @Override
     public String execute() {
-        String s = c.removeAll(c) ? "Коллекция была очищена." : "Коллекция итак была пуста.";
-        return s;
+        return c.removeAll(c) ? "Коллекция была очищена." : "Коллекция итак была пуста.";
 }
 
     /**

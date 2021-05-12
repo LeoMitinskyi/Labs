@@ -1,6 +1,6 @@
 package commands;
-import serverok.CommandDecoder;
-import serverok.collection.Ticket;
+import collection.Ticket;
+import mainPart.CommandDecoder;
 
 import java.util.LinkedList;
 
@@ -18,6 +18,7 @@ public class AddCommand extends CommandWithoutAdditionalArgument {
     public AddCommand(LinkedList<Ticket> c) {
         this.c = c;
     }
+
 
     /**
      * add element to the collection

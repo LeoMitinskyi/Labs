@@ -1,6 +1,6 @@
 package commands;
 
-import clientik.collection.Ticket;
+import collection.Ticket;
 import exceptions.IdNotFoundException;
 
 import java.util.LinkedList;
@@ -35,7 +35,9 @@ public class RemoveByIdCommand extends CommandWithAdditionalArgument{
      */
     @Override
     public void addArgument(String obj) {
-        ID = Integer.parseInt(obj);
+        String maxValue = String.valueOf(Integer.MAX_VALUE);
+        if (maxValue.length() > obj.length()) ID = Integer.parseInt(obj);
+        else throw new NumberFormatException();
     }
 
     /**
