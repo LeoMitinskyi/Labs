@@ -1,4 +1,0 @@
-help
-show
-dsadsa
-add
