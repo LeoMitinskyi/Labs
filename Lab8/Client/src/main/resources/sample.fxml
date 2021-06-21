@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #2e3348;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationPart.AuthorizationWindowController">
+   <cursor>
+      <Cursor fx:constant="WAIT" />
+   </cursor>
+   <children>
+      <Label fx:id="authLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="27.0" prefHeight="67.0" prefWidth="737.0" text="%Controller.authLabel" textFill="WHITE">
+         <font>
+            <Font name="Arial Nova" size="60.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="135.0" prefHeight="465.0" prefWidth="1000.0" style="-fx-background-color: #f0f2f5;">
+         <children>
+            <AnchorPane layoutX="226.0" layoutY="60.0" prefHeight="346.0" prefWidth="549.0" style="-fx-background-color: fafafa;">
+               <children>
+                  <Button fx:id="signInButton" layoutX="131.0" layoutY="173.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="288.0" style="-fx-background-color: #1877f2;" text="%Controller.signInButton" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Nova" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="signUpButton" layoutX="131.0" layoutY="251.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="288.0" style="-fx-background-color: #42b72a;" text="%Controller.signUpButton" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Nova" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="messageLabel" alignment="CENTER" layoutX="95.0" layoutY="284.0" prefHeight="37.0" prefWidth="360.0">
+                     <font>
+                        <Font name="Arial Nova" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="loginTextField" layoutX="131.0" layoutY="28.0" prefHeight="44.0" prefWidth="288.0" promptText="%Controller.loginTextField" style="-fx-border-color: silver;">
+                     <font>
+                        <Font name="Arial Nova" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Line endX="157.0" layoutX="271.0" layoutY="234.0" startX="-150.0" stroke="SILVER" />
+                  <PasswordField fx:id="passwordTextField" layoutX="131.0" layoutY="102.0" prefHeight="44.0" prefWidth="288.0" promptText="Введите пароль">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </AnchorPane>
+            <MenuButton fx:id="languageMenuButton" graphicTextGap="0.0" layoutX="888.0" layoutY="14.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-image: url(&quot;Translation2.png&quot;); -fx-background-size: 100% 100%; -fx-background-color: #f0f2f5;" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+              <items>
+                <MenuItem fx:id="russianMenuItem" mnemonicParsing="false" text="Русский" />
+                <MenuItem fx:id="englishMenuItem" mnemonicParsing="false" text="English" />
+                  <MenuItem fx:id="finnishMenuItem" mnemonicParsing="false" text="Suomalainen" />
+                  <MenuItem fx:id="greekMenuItem" mnemonicParsing="false" text="Ελληνική" />
+              </items>
+               <font>
+                  <Font size="1.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="NONE" />
+               </cursor>
+            </MenuButton>
+            <Button fx:id="closeButton" cancelButton="true" layoutX="871.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #cc0605;" text="%Controller.closeButton" textFill="WHITE">
+               <font>
+                  <Font name="Arial Nova" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
